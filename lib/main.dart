@@ -1,5 +1,7 @@
 import 'package:audioplayers/audio_cache.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() => runApp(XylophoneApp());
 
@@ -10,61 +12,32 @@ class XylophoneApp extends StatelessWidget {
     player.play('note$num.wav');
   }
 
+  Widget makeKey(Color color, int sound, String text) {
+    return Expanded(
+      child: FlatButton(
+        color: color,
+        onPressed: () {
+          playSound(sound);
+        },
+        child: Text(text),
+      ),
+    );
+  }
+
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              FlatButton(
-                color: Colors.red,
-                onPressed: () {
-                  playSound(1);
-                },
-                child: Text('C'),
-              ),
-              FlatButton(
-                color: Colors.orange,
-                onPressed: () {
-                  playSound(2);
-                },
-                child: Text('D'),
-              ),
-              FlatButton(
-                color: Colors.yellow,
-                onPressed: () {
-                  playSound(3);
-                },
-                child: Text('E'),
-              ),
-              FlatButton(
-                color: Colors.green,
-                onPressed: () {
-                  playSound(4);
-                },
-                child: Text('F'),
-              ),
-              FlatButton(
-                color: Colors.green[900],
-                onPressed: () {
-                  playSound(5);
-                },
-                child: Text('G'),
-              ),
-              FlatButton(
-                color: Colors.blue,
-                onPressed: () {
-                  playSound(6);
-                },
-                child: Text('A'),
-              ),
-              FlatButton(
-                color: Colors.purple,
-                onPressed: () {
-                  playSound(7);
-                },
-                child: Text('B'),
-              ),
+              makeKey(Colors.red, 1, 'C'),
+              makeKey(Colors.orange, 2, 'D'),
+              makeKey(Colors.yellow, 3, 'E'),
+              makeKey(Colors.green, 4, 'F'),
+              makeKey(Colors.teal, 5, 'G'),
+              makeKey(Colors.blue, 6, 'A'),
+              makeKey(Colors.purple, 7, 'B'),
             ],
           ),
         ),
